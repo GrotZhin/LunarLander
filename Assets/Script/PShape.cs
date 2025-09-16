@@ -6,6 +6,7 @@ public class PShape : MonoBehaviour
     public Vector3 position;
     public float radiuns;
     public GameObject feet;
+    public GameObject pointer;
     public bool isGrounded;
     void Awake()
     {

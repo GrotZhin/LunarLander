@@ -2,13 +2,13 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class PBody : MonoBehaviour
+public class PlayerMove : MonoBehaviour
 {
     [HideInInspector]
     public PShape shape;
     public float thrusterSpeed;
     public float rotationSpeed;
-    public GameObject pointer;
+    
     public float gas;
     public bool isStatic;
     [Header("Info")]
@@ -42,7 +42,7 @@ public class PBody : MonoBehaviour
 
 
             transform.Rotate(0, 0, -dir.x * rotationSpeed * Time.deltaTime);
-            shape.position += pointer.transform.up * dir.y * thrusterSpeed * Time.deltaTime;
+            shape.position += shape.pointer.transform.up * dir.y * thrusterSpeed * Time.deltaTime;
             shape.position += Vector3.right * dir.x * thrusterSpeed/9 * Time.deltaTime;
             
             if (dir.x > 0)
