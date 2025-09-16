@@ -8,10 +8,15 @@ public class PShape : MonoBehaviour
     public GameObject feet;
     public GameObject pointer;
     public bool isGrounded;
+
     void Awake()
     {
         position = transform.position;
-        
+
+    }
+    void LateUpdate()
+    {
+         Camera.main.transform.position = position;
     }
 }
 
