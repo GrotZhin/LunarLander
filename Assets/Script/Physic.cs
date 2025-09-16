@@ -22,7 +22,7 @@ public class Physic : MonoBehaviour
     {
         shape = GetComponent<PShape>();
         player = GetComponent<PlayerMove>();
-        gm = gameObject.GetComponent<GameManager>();
+       
         inicialPosition = transform.position;
 
     }
@@ -68,10 +68,11 @@ public class Physic : MonoBehaviour
         Collider[] c = Physics.OverlapCapsule(shape.feet.transform.position, shape.pointer.transform.position, 0.1f, layerMask);
         if (c.Length > 0)
         {
+          
             Destroy(this.gameObject, timer);
-            
-            //chamar animacao da nave detonada
             gm.Lose();
+            //chamar animacao da nave detonada
+            
         }
     }
     void OnDestroy()
@@ -85,7 +86,7 @@ public class Physic : MonoBehaviour
     }
     void WinCondition(PShape shape)
     {
-        if (shape.transform.transform.localEulerAngles.z <= 20 || shape.transform.transform.localEulerAngles.z >= -20 && speed < 20)
+        if (shape.transform.transform.localEulerAngles.z <= 20 || shape.transform.transform.localEulerAngles.z >= -20 && speed < 30)
         {
             shape.isGrounded = true;
             score = 100 * mult;
@@ -94,6 +95,7 @@ public class Physic : MonoBehaviour
         }
         else
         {
+            gm.Lose();
             Destroy(this.gameObject);
         }
     }
