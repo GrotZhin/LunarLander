@@ -60,9 +60,6 @@ public class PlayerMove : MonoBehaviour
             {
                 shape.isGrounded = false;
                 gas -= 4 * Time.deltaTime;
-            }else
-            {
-                shape.isGrounded = false;
             }
         }
     }
