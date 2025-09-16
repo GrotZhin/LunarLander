@@ -1,3 +1,4 @@
+using Sfx;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -9,8 +10,10 @@ public class Physic : MonoBehaviour
     public GameManager gm;
     public PShape shape;
     public PlayerMove player;
+    public GameObject xploz;
     Vector3 inicialPosition;
     public float speed;
+    public float timer;
     int mult;
     public int score;
     public LayerMask layerMask;
@@ -65,10 +68,16 @@ public class Physic : MonoBehaviour
         Collider[] c = Physics.OverlapCapsule(shape.feet.transform.position, shape.pointer.transform.position, 0.1f, layerMask);
         if (c.Length > 0)
         {
-            Destroy(this.gameObject, 5f);
+            Destroy(this.gameObject, timer);
+            
             //chamar animacao da nave detonada
             gm.Lose();
         }
+    }
+    void OnDestroy()
+    {
+        soundManager.PlaySound(SoundType.Blow);
+        Instantiate(xploz,transform.position,Quaternion.identity);
     }
     void ODrawGizmos()
     {
